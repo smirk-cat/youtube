@@ -189,7 +189,7 @@
 
 <svelte:window onkeydown={onKeyDown} />
 
-<div bind:this={videoContainer} class="h-full max-h-[75vh]">
+<div bind:this={videoContainer} class="h-full max-h-[75vh] w-full">
   <!-- svelte-ignore a11y_media_has_caption -->
-  <video bind:this={videoElement} class="mx-auto" autoplay></video>
+  <video bind:this={videoElement} class="mx-auto h-full w-full" autoplay></video>
 </div>

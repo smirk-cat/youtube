@@ -1,8 +1,24 @@
 <script lang="ts">
-  let { data } = $props()
+  import { UINode } from '$lib/features/yt/nodes'
+  import { yt } from '$lib/youtube'
+  import { onMount } from 'svelte'
+  import { YTNodes } from 'youtubei.js'
+
+  let node = $state<YTNodes.RichGrid | undefined>(undefined)
+
+  onMount(async () => {
+    const feed = await yt.getHomeFeed()
+    node = feed.contents?.as(YTNodes.RichGrid)
+  })
 </script>
 
-<div class="grid grid-cols-3 gap-4">
+{#if node}
+  <UINode {node} />
+{:else}
+  <div>Loading...</div>
+{/if}
+
+<!-- <div class="grid grid-cols-3 gap-4">
   {#each data.videos as video, i}
     <a
       href={`/watch/${video.videoId}`}
@@ -18,7 +34,6 @@
       </div>
 
       <div class="text-sm leading-tight font-semibold">{video.title}</div>
-      <!-- <div class="mt-1 text-xs text-neutral-500">{video.channelName}</div> -->
     </a>
   {/each}
-</div>
+</div> -->

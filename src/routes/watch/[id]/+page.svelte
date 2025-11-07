@@ -36,7 +36,7 @@
   {#key data.id}
     <div class="flex w-full flex-col">
       <div
-        class="mb-4 aspect-video overflow-hidden rounded-xl duration-300 starting:-translate-y-4 starting:opacity-0"
+        class="mb-4 overflow-hidden rounded-xl duration-300 starting:-translate-y-4 starting:opacity-0"
       >
         <Player manifestUrl={data.dashManifestUrl} isLive={data.isLive} {startTime} />
       </div>

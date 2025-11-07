@@ -1,4 +1,4 @@
-import { Innertube, Platform, UniversalCache, type Types } from 'youtubei.js/web'
+import { Innertube, Platform, UniversalCache, YTNodes, type Types } from 'youtubei.js/web'
 import { proxyFetch } from './helpers'
 
 Platform.shim.eval = async (
@@ -31,3 +31,6 @@ const init = async () => {
 }
 
 export const yt = await init()
+
+// the fuck
+export type YTNode = YTNodes.RichGrid['header']
