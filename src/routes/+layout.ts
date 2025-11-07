@@ -16,7 +16,8 @@ export const load: LayoutLoad = async () => {
     user: {
       avatarUrl: user?.account_photo[0].url || '',
       name: user?.account_name.toString() || '',
-      channelId: user?.channel_handle.toString() || ''
+      channelId: user?.channel_handle.toString() || '',
+      notificationsCount: await yt.getUnseenNotificationsCount()
     }
   }
 }

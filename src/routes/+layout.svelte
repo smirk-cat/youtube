@@ -30,14 +30,22 @@
     </div>
 
     <div class="flex w-1/3 items-center justify-end">
-      <button
-        aria-label="Notifications"
-        class="mr-2 flex items-center rounded-full bg-neutral-800/0 px-2 py-2 text-sm font-semibold"
-      >
-        <i class="i-tabler-bell h-5 w-5 text-neutral-300"></i>
-      </button>
-
       {#if data.user}
+        <button
+          aria-label="Notifications"
+          class="relative mr-2 flex items-center rounded-full bg-neutral-800/0 px-2 py-2 text-sm font-semibold"
+        >
+          <i class="i-tabler-bell h-5 w-5 text-neutral-300"></i>
+
+          {#if data.user.notificationsCount > 0}
+            <span
+              class="absolute -top-1 -right-1 flex h-4 items-center justify-center rounded-full bg-red-400 px-1 text-xs text-neutral-950"
+            >
+              {data.user.notificationsCount}
+            </span>
+          {/if}
+        </button>
+
         <img src={data.user?.avatarUrl} alt={data.user.name} class="h-8 w-8 rounded-full" />
       {:else}
         <div class="h-8 w-8 rounded-full bg-neutral-800"></div>
