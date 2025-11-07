@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin '@egoist/tailwindcss-icons';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@property --color-hue {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 296;
+}
+
+@property --bg-saturation {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --color-secondary-hue {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 346;
+}
+
+:root {
+  --bg-saturation: 1;
+  --color-hue: 296;
+  --color-secondary-hue: calc(var(--color-hue) + 50);
+}
+
+@theme {
+  --font-sans: 'Montserrat', sans-serif;
+  --font-display: 'Montserrat Alternates', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@theme inline {
+  --color-neutral-50: oklch(0.97 calc(0.005 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-100: oklch(0.93 calc(0.008 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-200: oklch(0.85 calc(0.01 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-300: oklch(0.74 calc(0.015 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-400: oklch(0.63 calc(0.02 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-500: oklch(0.52 calc(0.022 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-600: oklch(0.42 calc(0.018 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-700: oklch(0.33 calc(0.015 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-800: oklch(0.24 calc(0.011 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-900: oklch(0.16 calc(0.008 * var(--bg-saturation)) var(--color-hue));
+  --color-neutral-950: oklch(0.12 calc(0.006 * var(--bg-saturation)) var(--color-hue));
+
+  --color-primary-50: oklch(0.97 0.05 var(--color-hue));
+  --color-primary-100: oklch(0.92 0.1 var(--color-hue));
+  --color-primary-200: oklch(0.85 0.15 var(--color-hue));
+  --color-primary-300: oklch(0.75 0.18 var(--color-hue));
+  --color-primary-400: oklch(0.65 0.2 var(--color-hue));
+  --color-primary-500: oklch(0.55 0.22 var(--color-hue));
+  --color-primary-600: oklch(0.45 0.2 var(--color-hue));
+  --color-primary-700: oklch(0.35 0.18 var(--color-hue));
+  --color-primary-800: oklch(0.25 0.15 var(--color-hue));
+  --color-primary-900: oklch(0.18 0.12 var(--color-hue));
+  --color-primary-950: oklch(0.12 0.08 var(--color-hue));
+
+  --color-secondary-50: oklch(0.97 0.05 var(--color-secondary-hue));
+  --color-secondary-100: oklch(0.92 0.1 var(--color-secondary-hue));
+  --color-secondary-200: oklch(0.85 0.15 var(--color-secondary-hue));
+  --color-secondary-300: oklch(0.75 0.18 var(--color-secondary-hue));
+  --color-secondary-400: oklch(0.65 0.2 var(--color-secondary-hue));
+  --color-secondary-500: oklch(0.55 0.22 var(--color-secondary-hue));
+  --color-secondary-600: oklch(0.45 0.2 var(--color-secondary-hue));
+  --color-secondary-700: oklch(0.35 0.18 var(--color-secondary-hue));
+  --color-secondary-800: oklch(0.25 0.15 var(--color-secondary-hue));
+  --color-secondary-900: oklch(0.18 0.12 var(--color-secondary-hue));
+  --color-secondary-950: oklch(0.12 0.08 var(--color-secondary-hue));
+}
+
+@theme {
+  --color-red-50: oklch(0.97 0.05 20);
+  --color-red-100: oklch(0.92 0.1 20);
+  --color-red-200: oklch(0.85 0.15 20);
+  --color-red-300: oklch(0.75 0.18 20);
+  --color-red-400: oklch(0.65 0.2 20);
+  --color-red-500: oklch(0.55 0.22 20);
+  --color-red-600: oklch(0.45 0.2 20);
+  --color-red-700: oklch(0.35 0.18 20);
+  --color-red-800: oklch(0.25 0.15 20);
+  --color-red-900: oklch(0.18 0.12 20);
+  --color-red-950: oklch(0.12 0.08 20);
+
+  --color-yellow-50: oklch(0.98 0.03 95);
+  --color-yellow-100: oklch(0.95 0.04 95);
+  --color-yellow-200: oklch(0.88 0.05 95);
+  --color-yellow-300: oklch(0.77 0.07 95);
+  --color-yellow-400: oklch(0.65 0.1 95);
+  --color-yellow-500: oklch(0.55 0.13 95);
+  --color-yellow-600: oklch(0.44 0.15 95);
+  --color-yellow-700: oklch(0.34 0.16 95);
+  --color-yellow-800: oklch(0.25 0.14 95);
+  --color-yellow-900: oklch(0.18 0.12 95);
+  --color-yellow-950: oklch(0.12 0.1 95);
+
+  --color-blue-50: oklch(0.97 0.03 250);
+  --color-blue-100: oklch(0.93 0.04 250);
+  --color-blue-200: oklch(0.85 0.06 250);
+  --color-blue-300: oklch(0.73 0.09 250);
+  --color-blue-400: oklch(0.61 0.12 250);
+  --color-blue-500: oklch(0.5 0.15 250);
+  --color-blue-600: oklch(0.39 0.17 250);
+  --color-blue-700: oklch(0.28 0.18 250);
+  --color-blue-800: oklch(0.21 0.16 250);
+  --color-blue-900: oklch(0.15 0.13 250);
+  --color-blue-950: oklch(0.11 0.1 250);
+}
+
+@utility prose-neutral {
+  --tw-prose-body: var(--color-neutral-800);
+  --tw-prose-headings: var(--color-neutral-900);
+  --tw-prose-lead: var(--color-neutral-700);
+  --tw-prose-links: var(--color-neutral-900);
+  --tw-prose-bold: var(--color-neutral-900);
+  --tw-prose-counters: var(--color-neutral-600);
+  --tw-prose-bullets: var(--color-neutral-400);
+  --tw-prose-hr: var(--color-neutral-300);
+  --tw-prose-quotes: var(--color-neutral-900);
+  --tw-prose-quote-borders: var(--color-neutral-300);
+  --tw-prose-captions: var(--color-neutral-700);
+  --tw-prose-code: var(--color-neutral-900);
+  --tw-prose-pre-code: var(--color-neutral-100);
+  --tw-prose-pre-bg: var(--color-neutral-900);
+  --tw-prose-th-borders: var(--color-neutral-300);
+  --tw-prose-td-borders: var(--color-neutral-200);
+  --tw-prose-invert-body: var(--color-neutral-200);
+  --tw-prose-invert-headings: var(--color-neutral-50);
+  --tw-prose-invert-lead: var(--color-neutral-300);
+  --tw-prose-invert-links: var(--color-neutral-50);
+  --tw-prose-invert-bold: var(--color-neutral-50);
+  --tw-prose-invert-counters: var(--color-neutral-400);
+  --tw-prose-invert-bullets: var(--color-neutral-600);
+  --tw-prose-invert-hr: var(--color-neutral-700);
+  --tw-prose-invert-quotes: var(--color-neutral-100);
+  --tw-prose-invert-quote-borders: var(--color-neutral-700);
+  --tw-prose-invert-captions: var(--color-neutral-400);
+  --tw-prose-invert-code: var(--color-neutral-50);
+  --tw-prose-invert-pre-code: var(--color-neutral-300);
+  --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+  --tw-prose-invert-th-borders: var(--color-neutral-600);
+  --tw-prose-invert-td-borders: var(--color-neutral-700);
+}
