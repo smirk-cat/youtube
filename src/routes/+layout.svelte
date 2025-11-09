@@ -10,7 +10,7 @@
   <title>NekoTube</title>
 </svelte:head>
 
-<div class="px-8 py-14">
+<div class="px-8 py-16">
   <div class="fixed top-0 left-0 z-10 flex h-14 w-full items-center bg-neutral-900 px-8">
     <div class="flex w-1/3 items-center justify-start">
       <a href="/" class="flex items-center text-xl tracking-tight">

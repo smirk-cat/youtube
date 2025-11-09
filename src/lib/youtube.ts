@@ -31,3 +31,5 @@ const init = async () => {
 }
 
 export const yt = await init()
+
+export type InnerTubeHomeFeed = Awaited<ReturnType<Innertube['getHomeFeed']>>

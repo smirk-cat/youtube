@@ -145,3 +145,14 @@
   --tw-prose-invert-th-borders: var(--color-neutral-600);
   --tw-prose-invert-td-borders: var(--color-neutral-700);
 }
+
+@layer utilities {
+  .scroll-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
