@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { yt, type InnerTubeHomeFeed } from '$lib/youtube'
   import { YTNodes } from 'youtubei.js/web'
+  import { yt, type InnerTubeHomeFeed } from '$lib/youtube'
+  import { Lockup } from '$lib/ui'
 
   interface HomeFeedFilter {
     text: string
@@ -118,22 +119,13 @@
 
 <div class="grid grid-cols-4 gap-4">
   {#each items as item}
-    <a
-      href={`/watch/${item.id}`}
-      style="--delay: {item.animIndex * 25}ms"
-      class="flex flex-col delay-(--delay) duration-300 starting:-translate-y-4 starting:opacity-0"
-    >
-      <div class="mb-2 aspect-video w-full overflow-hidden rounded-xl">
-        <img
-          src={item.thumbnailUrl}
-          alt="Video Thumbnail"
-          class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-        />
-      </div>
-
-      <div class="text-sm leading-tight font-semibold">{item.title}</div>
-      <!-- <div class="mt-1 text-xs text-neutral-500">{video.channelName}</div> -->
-    </a>
+    <Lockup
+      type="video"
+      id={item.id}
+      thumbnailUrl={item.thumbnailUrl}
+      title={item.title}
+      orientation={'horizontal'}
+    />
   {:else}
     <div class="flex h-64 col-span-full w-full items-center justify-center">
       <div class="h-16 w-16 animate-spin text-red-400 i-tabler-loader-2"></div>

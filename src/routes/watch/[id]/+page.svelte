@@ -2,6 +2,7 @@
   import { Player } from '$lib/features/yt/player'
   import { Button, ButtonGroup } from '$lib/ui'
   import { BaseDropdown } from '$lib/ui/base'
+  import { Lockup } from '$lib/ui'
 
   let { data } = $props()
   let startTime = $state(data.startTime)
@@ -120,23 +121,13 @@
 
   <div class="flex flex-col gap-4">
     {#each data.relatedVideos as video, i (video.videoId + i + Math.random())}
-      <a
-        href="/watch/{video.videoId}"
-        style="--delay: {i * 25}ms;"
-        class="flex cursor-pointer gap-2 delay-(--delay) duration-300 starting:-translate-y-4 starting:opacity-0"
-      >
-        <img
-          src={video.thumbnail}
-          alt="Video Thumbnail"
-          class="aspect-video h-24 rounded-xl object-cover"
-        />
-
-        <div class="flex flex-col text-sm">
-          <span class="line-clamp-2 text-ellipsis">{video.title}</span>
-          <span class="text-sm text-neutral-400">{video.metadata[0]}</span>
-          <span class="text-sm text-neutral-400">{video.metadata[1]}</span>
-        </div>
-      </a>
+      <Lockup
+        type="video"
+        id={video.videoId}
+        thumbnailUrl={video.thumbnail}
+        title={video.title.toString()}
+        orientation={'vertical'}
+      />
     {/each}
   </div>
 </div>
