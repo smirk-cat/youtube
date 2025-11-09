@@ -13,7 +13,7 @@
 
 <a
   href="/watch/{id}"
-  class={cn('flex cursor-pointer gap-2 bg-green-50', {
+  class={cn('flex cursor-pointer gap-2', {
     'flex-col': orientation == 'horizontal',
     'flex-row': orientation == 'vertical'
   })}
@@ -30,10 +30,10 @@
   <div class="flex flex-row">
     {#if orientation == 'horizontal'}
       <!-- TODO img -->
-      <div class="mr-2 h-10 w-10 shrink-0 rounded-full bg-red-900"></div>
+      <div class="mr-2 h-10 w-10 shrink-0 rounded-full"></div>
     {/if}
 
-    <div class="flex flex-col bg-green-100 text-sm">
+    <div class="flex flex-col text-sm">
       <span class="line-clamp-2 text-ellipsis">{title}</span>
       <span class="text-sm text-neutral-400">metadata[0]</span>
       <span class="text-sm text-neutral-400">metadata[1]</span>
