@@ -25,7 +25,7 @@
   let continuationRef: HTMLDivElement
 
   const parseItem = (node: YTNodes.RichItem) => {
-    if (node.content.is(YTNodes.LockupView)) {
+    if (node.content?.is(YTNodes.LockupView)) {
       const lockup = node.content.as(YTNodes.LockupView)
 
       if (lockup.content_type === 'VIDEO') {
@@ -49,6 +49,8 @@
   }
 
   const loadItems = () => {
+    console.log(feed?.contents)
+
     if (
       feed?.contents?.is(YTNodes.RichGrid) ||
       feed?.contents?.is(YTNodes.AppendContinuationItemsAction)
@@ -101,11 +103,11 @@
   })
 </script>
 
-<div class="scroll-hidden -mx-8 flex overflow-x-auto px-8">
+<div class="scroll-hidden -mx-8 mb-4 flex gap-2 overflow-x-auto px-8">
   {#each filters as filter}
     <!-- TODO: filters are broken in yti -->
     <button
-      class="mr-2 mb-4 rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-200 {filter.selected
+      class="rounded-xl px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-200 {filter.selected
         ? 'bg-neutral-700 text-white'
         : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700 hover:text-white'}"
     >
@@ -132,6 +134,10 @@
       <div class="text-sm leading-tight font-semibold">{item.title}</div>
       <!-- <div class="mt-1 text-xs text-neutral-500">{video.channelName}</div> -->
     </a>
+  {:else}
+    <div class="flex h-64 col-span-full w-full items-center justify-center">
+      <div class="h-16 w-16 animate-spin text-red-400 i-tabler-loader-2"></div>
+    </div>
   {/each}
 
   <div bind:this={continuationRef}></div>
