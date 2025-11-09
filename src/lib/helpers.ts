@@ -1,5 +1,8 @@
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 import shaka from 'shaka-player/dist/shaka-player.ui'
 import type { Misc } from 'youtubei.js/web'
+import type { ClassValue } from 'clsx'
 
 export interface ProxySettings {
   protocol: 'http' | 'https'
@@ -334,4 +337,8 @@ export async function proxyFetch(
   headers.delete('user-agent')
 
   return fetch(request, requestInit)
+}
+
+export const cn = (...classes: ClassValue[]) => {
+  return twMerge(clsx(...classes))
 }

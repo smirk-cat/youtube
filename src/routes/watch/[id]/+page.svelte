@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Player } from '$lib/features/yt/player'
+  import { Button, ButtonGroup } from '$lib/ui'
   import { BaseDropdown } from '$lib/ui/base'
 
   let { data } = $props()
@@ -64,58 +65,36 @@
           Subscribe
         </button>
 
-        <div class="ml-auto flex items-center rounded-full bg-neutral-800 text-sm font-semibold">
-          <button
+        <ButtonGroup class="ml-auto">
+          <Button
+            icon={isLiked ? 'i-tabler-thumb-up-filled' : 'i-tabler-thumb-up'}
             onclick={() => {
               data.like()
               isLiked = !isLiked
               if (!isDisliked) data.removeRating()
               if (isLiked && isDisliked) isDisliked = false
             }}
-            class="flex items-center px-4 py-2 first:rounded-l-full hover:bg-neutral-700"
           >
-            <i
-              class:i-tabler-thumb-up-filled={isLiked}
-              class:i-tabler-thumb-up={!isLiked}
-              class="mr-2 -ml-1.5 h-5 w-5 text-neutral-300"
-            ></i>
             {Intl.NumberFormat('en', { notation: 'compact' }).format(data.likes)}
-          </button>
-          <div class="h-6 w-px bg-neutral-700"></div>
-          <button
+          </Button>
+          <Button
+            icon={isDisliked ? 'i-tabler-thumb-down-filled' : 'i-tabler-thumb-down'}
             onclick={() => {
               data.dislike()
               isDisliked = !isDisliked
               if (!isDisliked) data.removeRating()
               if (isDisliked && isLiked) isLiked = false
             }}
-            class="flex items-center px-4 py-2 last:rounded-r-full hover:bg-neutral-700"
           >
-            <i
-              class:i-tabler-thumb-down-filled={isDisliked}
-              class:i-tabler-thumb-down={!isDisliked}
-              class="mr-2 -ml-1.5 h-5 w-5 text-neutral-300"
-            ></i>
             {Intl.NumberFormat('en', { notation: 'compact' }).format(data.dislikes)}
-          </button>
-        </div>
+          </Button>
+        </ButtonGroup>
 
-        <button
-          class="ml-2 flex items-center rounded-full bg-neutral-800 px-4 py-2 text-sm font-semibold"
-        >
-          <i class="i-tabler-share mr-2 -ml-1.5 h-5 w-5 text-neutral-300"></i>
-          Share
-        </button>
+        <Button icon="i-tabler-share" class="ml-2">Share</Button>
 
         <BaseDropdown>
           {#snippet trigger(props)}
-            <button
-              {...props}
-              aria-label="More"
-              class="ml-2 flex items-center rounded-full bg-neutral-800 px-2 py-2 text-sm font-semibold"
-            >
-              <i class="i-tabler-dots h-5 w-5"></i>
-            </button>
+            <Button {...props} icon="i-tabler-dots" aria-label="More" class="ml-2" />
           {/snippet}
 
           Kafif
