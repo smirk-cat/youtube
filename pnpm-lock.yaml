@@ -11,12 +11,18 @@ importers:
       bgutils-js:
         specifier: ^3.2.0
         version: 3.2.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       googlevideo:
         specifier: ^4.0.4
         version: 4.0.4
       shaka-player:
         specifier: ^4.16.8
         version: 4.16.8
+      tailwind-merge:
+        specifier: ^3.4.0
+        version: 3.4.0
       youtubei.js:
         specifier: ^16.0.1
         version: 16.0.1
@@ -1369,7 +1375,6 @@ packages:
 
   shaka-player@4.16.8:
     resolution: {integrity: sha512-+5vgsd/jmBpjTdclcrjm6ai91mEFLP/UVFRGhJiJ/nE4KPDtRb9+0nYYOx21h5ZoEbiGvAmY+/nw4j2tbfkD6w==}
-    engines: {node: '>=18'}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -1415,6 +1420,9 @@ packages:
   svelte@5.43.3:
     resolution: {integrity: sha512-kjkAjCk41mJfvJZG56XcJNOdJSke94JxtcX8zFzzz2vrt47E0LnoBzU6azIZ1aBxJgUep8qegAkguSf1GjxLXQ==}
     engines: {node: '>=18'}
+
+  tailwind-merge@3.4.0:
+    resolution: {integrity: sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g==}
 
   tailwindcss@4.1.16:
     resolution: {integrity: sha512-pONL5awpaQX4LN5eiv7moSiSPd/DLDzKVRJz8Q9PgzmAdd1R4307GQS2ZpfiN7ZmekdQrfhZZiSE5jkLR4WNaA==}
@@ -2714,6 +2722,8 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.21
       zimmerframe: 1.1.4
+
+  tailwind-merge@3.4.0: {}
 
   tailwindcss@4.1.16: {}
 
