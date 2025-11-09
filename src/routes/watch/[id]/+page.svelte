@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Player } from '$lib/features/yt/player'
+  import { BaseDropdown } from '$lib/ui/base'
 
   let { data } = $props()
   let startTime = $state(data.startTime)
@@ -106,12 +107,19 @@
           Share
         </button>
 
-        <button
-          aria-label="More"
-          class="ml-2 flex items-center rounded-full bg-neutral-800 px-2 py-2 text-sm font-semibold"
-        >
-          <i class="i-tabler-dots h-5 w-5"></i>
-        </button>
+        <BaseDropdown>
+          {#snippet trigger(props)}
+            <button
+              {...props}
+              aria-label="More"
+              class="ml-2 flex items-center rounded-full bg-neutral-800 px-2 py-2 text-sm font-semibold"
+            >
+              <i class="i-tabler-dots h-5 w-5"></i>
+            </button>
+          {/snippet}
+
+          Kafif
+        </BaseDropdown>
       </div>
 
       <div
