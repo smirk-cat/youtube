@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, type ComponentProps } from 'svelte'
   import { YTNodes } from 'youtubei.js/web'
   import { yt, type InnerTubeHomeFeed } from '$lib/youtube'
   import { Lockup } from '$lib/ui'
@@ -9,14 +9,7 @@
     selected: boolean
   }
 
-  interface HomeFeedVideo {
-    id: string
-    title: string
-    thumbnailUrl: string
-    animIndex: number
-  }
-
-  type HomeFeedItem = { type: 'video' } & HomeFeedVideo
+  type HomeFeedItem = { animIndex: number } & ComponentProps<typeof Lockup>
 
   let items = $state<HomeFeedItem[]>([])
   let filters = $state<HomeFeedFilter[]>([])
@@ -30,11 +23,21 @@
       const lockup = node.content.as(YTNodes.LockupView)
 
       if (lockup.content_type === 'VIDEO') {
+        const metaRows = lockup.metadata?.metadata?.metadata_rows
+
         tmpItems.push({
           type: 'video',
           id: lockup.content_id,
-          title: lockup.metadata?.title.toString() || '',
           thumbnailUrl: lockup.content_image?.as(YTNodes.ThumbnailView).image?.[0]?.url || '',
+          title: lockup.metadata?.title.toString() || '',
+          meta: {
+            authorAvatarUrl:
+              lockup.metadata?.image?.as(YTNodes.DecoratedAvatarView).avatar?.image?.[0].url || '',
+            author: metaRows?.[0]?.metadata_parts?.[0].text?.toString() || '',
+            views: metaRows?.[1]?.metadata_parts?.[0].text?.toString() || '',
+            uploadedAt: metaRows?.[1]?.metadata_parts?.[1].text?.toString() || ''
+          },
+          orientation: 'vertical',
           animIndex: 0
         })
       }
@@ -119,13 +122,13 @@
 
 <div class="grid grid-cols-4 gap-4">
   {#each items as item}
-    <Lockup
-      type="video"
-      id={item.id}
-      thumbnailUrl={item.thumbnailUrl}
-      title={item.title}
-      orientation={'horizontal'}
-    />
+    {@const { animIndex, ...props } = item}
+    <div
+      style="--delay: {animIndex * 10}ms"
+      class="delay-(--delay) duration-300 starting:-translate-y-4 starting:opacity-0"
+    >
+      <Lockup {...props} />
+    </div>
   {:else}
     <div class="flex h-64 col-span-full w-full items-center justify-center">
       <div class="h-16 w-16 animate-spin text-red-400 i-tabler-loader-2"></div>

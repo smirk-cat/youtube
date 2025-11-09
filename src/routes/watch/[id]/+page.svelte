@@ -124,9 +124,14 @@
       <Lockup
         type="video"
         id={video.videoId}
-        thumbnailUrl={video.thumbnail}
+        thumbnailUrl={video.thumbnailUrl}
         title={video.title.toString()}
-        orientation={'vertical'}
+        meta={{
+          author: video.author,
+          views: video.views,
+          uploadedAt: video.uploadedAt
+        }}
+        orientation="horizontal"
       />
     {/each}
   </div>

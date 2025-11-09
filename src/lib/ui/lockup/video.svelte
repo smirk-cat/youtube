@@ -1,42 +1,55 @@
 <script lang="ts">
   import { cn } from '$lib/helpers'
 
-  interface Props {
+  let {
+    id,
+    thumbnailUrl,
+    title,
+    meta,
+    orientation
+  }: {
     id: string
     thumbnailUrl: string
     title: string
+    meta: {
+      authorAvatarUrl?: string
+      author: string
+      views: string
+      uploadedAt: string
+    }
     orientation: 'vertical' | 'horizontal'
-  }
-
-  let { id, thumbnailUrl, title, orientation }: Props = $props()
+  } = $props()
 </script>
 
 <a
   href="/watch/{id}"
-  class={cn('flex cursor-pointer gap-2', {
-    'flex-col': orientation == 'horizontal',
-    'flex-row': orientation == 'vertical'
-  })}
+  class={cn(
+    'flex cursor-pointer gap-3',
+    orientation == 'vertical' && 'flex-col',
+    orientation == 'horizontal' && 'flex-row'
+  )}
 >
   <img
     src={thumbnailUrl}
     alt="Video Thumbnail"
-    class={cn('aspect-video rounded-xl object-cover', {
-      'w-full': orientation == 'horizontal',
-      'h-24': orientation == 'vertical'
-    })}
+    class={cn(
+      'aspect-video rounded-xl object-cover',
+      orientation == 'vertical' && 'w-full',
+      orientation == 'horizontal' && 'h-24'
+    )}
   />
 
-  <div class="flex flex-row">
-    {#if orientation == 'horizontal'}
-      <!-- TODO img -->
-      <div class="mr-2 h-10 w-10 shrink-0 rounded-full"></div>
+  <div class="flex">
+    {#if orientation == 'vertical' && meta.authorAvatarUrl}
+      <img src={meta.authorAvatarUrl} alt={meta.author} class="mr-3 h-10 min-w-10 rounded-full" />
     {/if}
 
-    <div class="flex flex-col text-sm">
-      <span class="line-clamp-2 text-ellipsis">{title}</span>
-      <span class="text-sm text-neutral-400">metadata[0]</span>
-      <span class="text-sm text-neutral-400">metadata[1]</span>
+    <div class="flex flex-col">
+      <span class={cn('line-clamp-2 text-ellipsis', orientation == 'horizontal' && 'text-sm')}>
+        {title}
+      </span>
+      <span class="text-sm text-neutral-400">{meta.author}</span>
+      <span class="text-sm text-neutral-400">{meta.views} • {meta.uploadedAt}</span>
     </div>
   </div>
 </a>

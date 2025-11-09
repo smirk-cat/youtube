@@ -40,15 +40,11 @@ export const load: PageLoad = async ({ params, fetch, url }) => {
         videoId: x.content_id || '',
         title: x.metadata?.title || '',
         // @ts-expect-error: fuck
-        thumbnail: x.content_image?.image?.[0]?.url || '',
-        metadata:
-          x.metadata?.metadata?.metadata_rows.map((row) => {
-            return (
-              row.metadata_parts
-                ?.map((item) => item.text?.toString())
-                .join(x.metadata?.metadata?.delimiter) || ''
-            )
-          }) || []
+        thumbnailUrl: x.content_image?.image?.[0]?.url || '',
+        author: x.metadata?.metadata?.metadata_rows?.[0].metadata_parts?.[0].text?.toString() || '',
+        views: x.metadata?.metadata?.metadata_rows?.[1].metadata_parts?.[0].text?.toString() || '',
+        uploadedAt:
+          x.metadata?.metadata?.metadata_rows?.[1].metadata_parts?.[1].text?.toString() || ''
       })),
     viewCount: video.primary_info?.view_count?.short_view_count || '',
     publishedDate: video.primary_info?.published || '',
