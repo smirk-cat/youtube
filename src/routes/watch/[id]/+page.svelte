@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { cn } from '$lib/helpers'
   import { Player } from '$lib/features/yt/player'
-  import { Button, ButtonGroup, Dropdown, DropdownButton } from '$lib/ui'
-  import { Lockup } from '$lib/ui'
+  import { Button, ButtonGroup, Dropdown, DropdownButton, Lockup } from '$lib/ui'
 
   let { data } = $props()
   let startTime = $state(data.startTime)
@@ -12,6 +12,11 @@
 
   let isLiked = $state(data.isLiked)
   let isDisliked = $state(data.isDisliked)
+  let mode = $state<'default' | 'theatre'>('default')
+
+  const toggleMode = () => {
+    mode = mode === 'default' ? 'theatre' : 'default'
+  }
 
   const onDescriptionClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement
@@ -34,15 +39,21 @@
   }
 </script>
 
-<div class="grid grid-cols-[1fr_24rem] gap-4">
+<div class="grid grid-cols-[auto_24rem] grid-rows-[auto_1fr] gap-4 px-8">
   {#key data.id}
-    <div class="flex w-full flex-col">
-      <div
-        class="mb-4 aspect-video overflow-hidden rounded-xl duration-300 starting:-translate-y-4 starting:opacity-0"
-      >
-        <Player manifestUrl={data.dashManifestUrl} isLive={data.isLive} {startTime} />
-      </div>
+    <div
+      class={cn(
+        'col-start-1 row-start-1 aspect-video overflow-hidden duration-300 starting:-translate-y-4 starting:opacity-0',
+        {
+          'rounded-xl': mode == 'default',
+          'col-span-2 max-h-[85vh] w-full': mode == 'theatre'
+        }
+      )}
+    >
+      <Player manifestUrl={data.dashManifestUrl} isLive={data.isLive} {toggleMode} {startTime} />
+    </div>
 
+    <div class={cn('col-start-1 row-start-2')}>
       <div
         class="mb-2 text-lg font-bold delay-25 duration-300 starting:-translate-y-4 starting:opacity-0"
       >
@@ -116,7 +127,12 @@
     </div>
   {/key}
 
-  <div class="flex flex-col gap-4">
+  <div
+    class={cn('col-start-2 flex flex-col gap-4', {
+      'row-span-2 row-start-1': mode == 'default',
+      'row-start-2': mode == 'theatre'
+    })}
+  >
     {#each data.relatedVideos as video, i (video.videoId + i + Math.random())}
       <Lockup
         type="video"

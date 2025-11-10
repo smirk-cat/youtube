@@ -7,10 +7,12 @@
   let {
     manifestUrl,
     isLive,
+    toggleMode,
     startTime = 0
   }: {
     manifestUrl: string
     isLive: boolean
+    toggleMode: () => void
     startTime?: number
   } = $props()
 
@@ -183,13 +185,17 @@
         if (document.fullscreenElement) document.exitFullscreen()
         else videoContainer!.requestFullscreen()
         break
+      case 'KeyT':
+        e.preventDefault()
+        toggleMode()
+        break
     }
   }
 </script>
 
 <svelte:window onkeydown={onKeyDown} />
 
-<div bind:this={videoContainer} class="h-full max-h-[75vh]">
+<div bind:this={videoContainer} class="h-full">
   <!-- svelte-ignore a11y_media_has_caption -->
   <video muted bind:this={videoElement} class="mx-auto" autoplay></video>
 </div>
