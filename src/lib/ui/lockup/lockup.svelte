@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ComponentProps } from 'svelte'
-  import { Video } from './lockup'
+  import Video from './video.svelte'
 
   type WithType<N extends string, T> = T & { type: N }
 

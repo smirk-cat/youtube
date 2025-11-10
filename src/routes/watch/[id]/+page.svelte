@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Player } from '$lib/features/yt/player'
-  import { Button, ButtonGroup } from '$lib/ui'
-  import { BaseDropdown } from '$lib/ui/base'
+  import { Button, ButtonGroup, Dropdown, DropdownButton } from '$lib/ui'
   import { Lockup } from '$lib/ui'
 
   let { data } = $props()
@@ -60,11 +59,7 @@
           <span class="text-sm text-neutral-400">{data.subscriberCount}</span>
         </div>
 
-        <button
-          class="ml-8 rounded-full bg-neutral-100 px-4 py-2 text-sm font-semibold text-neutral-900"
-        >
-          Subscribe
-        </button>
+        <Button class="ml-8" variant="100">Subscribe</Button>
 
         <ButtonGroup class="ml-auto">
           <Button
@@ -93,13 +88,15 @@
 
         <Button icon="i-tabler-share" class="ml-2">Share</Button>
 
-        <BaseDropdown>
+        <Dropdown>
           {#snippet trigger(props)}
             <Button {...props} icon="i-tabler-dots" aria-label="More" class="ml-2" />
           {/snippet}
 
-          Kafif
-        </BaseDropdown>
+          <DropdownButton icon="i-tabler-brand-youtube" href="https://youtu.be/{data.id}">
+            Open in YouTube
+          </DropdownButton>
+        </Dropdown>
       </div>
 
       <div

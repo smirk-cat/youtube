@@ -191,5 +191,5 @@
 
 <div bind:this={videoContainer} class="h-full max-h-[75vh]">
   <!-- svelte-ignore a11y_media_has_caption -->
-  <video bind:this={videoElement} class="mx-auto" autoplay></video>
+  <video muted bind:this={videoElement} class="mx-auto" autoplay></video>
 </div>

@@ -1,20 +1,24 @@
 <script lang="ts">
   import { cn } from '$lib/helpers'
-  import type { HTMLAttributes } from 'svelte/elements'
+  import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements'
 
-  type Props = HTMLAttributes<HTMLButtonElement> & {
+  interface CustomProps {
     icon?: string
   }
+
+  type Props = CustomProps & (HTMLButtonAttributes | HTMLAnchorAttributes)
 
   let { children, icon, class: className, ...rest }: Props = $props()
 
   const iconOnly = $derived(icon && !children)
+  const Tag = $derived('href' in rest ? 'a' : 'button')
 </script>
 
-<button
+<svelte:element
+  this={Tag}
   {...rest}
   class={cn(
-    'relative flex items-center rounded-full bg-neutral-800 py-2 text-sm font-semibold hover:bg-neutral-700',
+    'relative flex cursor-pointer items-center py-2 text-sm font-semibold',
     iconOnly ? 'px-2' : 'px-4',
     className
   )}
@@ -24,4 +28,4 @@
   {/if}
 
   {@render children?.()}
-</button>
+</svelte:element>
