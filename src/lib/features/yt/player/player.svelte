@@ -209,3 +209,16 @@
 <div bind:this={videoContainer} class="h-full">
   <video muted bind:this={videoElement} class="mx-auto" autoplay></video>
 </div>
+
+<style>
+  :global(
+    .shaka-controls-button-panel,
+    .shaka-controls-top-button-panel,
+    .shaka-scrim-container,
+    .shaka-seek-bar-container,
+    .shaka-statistics-container,
+    .shaka-context-menu
+  ) {
+    transition: opacity cubic-bezier(0.4, 0, 0.6, 1) 150ms !important;
+  }
+</style>
