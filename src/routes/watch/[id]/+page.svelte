@@ -35,15 +35,13 @@
   }
 </script>
 
-<div class="grid grid-cols-[auto_24rem] grid-rows-[auto_1fr] gap-4 px-8">
+<div class="grid grid-cols-[auto_24rem] grid-rows-[auto_1fr] gap-4">
   {#key data.id}
     <div
       class={cn(
-        'col-start-1 row-start-1 aspect-video overflow-hidden duration-300 starting:-translate-y-4 starting:opacity-0',
-        {
-          'rounded-xl': mode == 'default',
-          'col-span-2 max-h-[85vh] w-full': mode == 'theatre'
-        }
+        'col-start-1 row-start-1 overflow-hidden duration-300 starting:-translate-y-4 starting:opacity-0',
+        mode === 'default' && 'rounded-xl',
+        mode === 'theatre' && 'col-span-2 -mx-8 max-h-[85vh] w-[calc(100%+4rem)]'
       )}
     >
       <Player manifestUrl={data.dashManifestUrl} isLive={data.isLive} {toggleMode} {startTime} />
