@@ -342,3 +342,30 @@ export async function proxyFetch(
 export const cn = (...classes: ClassValue[]) => {
   return twMerge(clsx(...classes))
 }
+
+export const getRealNames = async (videos: { id: string; title: string }[]) => {
+  const url = new URL('https://www.googleapis.com/youtube/v3/videos')
+  url.searchParams.set('part', 'snippet,contentDetails,statistics')
+  url.searchParams.set('id', videos.map((x) => x.id).join(','))
+  url.searchParams.set('key', localStorage.getItem('yt-data-key') || '')
+
+  try {
+    const res = await fetch(url.toString())
+    const data = await res.json()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const items: any[] = data.items || []
+
+    return items
+      .map((x) => ({
+        id: x.id,
+        title: x.snippet.title
+      }))
+      .sort((a, b) => {
+        const originalA = videos.findIndex((v) => v.id === a.id)
+        const originalB = videos.findIndex((v) => v.id === b.id)
+        return originalA - originalB
+      })
+  } catch {
+    return videos
+  }
+}

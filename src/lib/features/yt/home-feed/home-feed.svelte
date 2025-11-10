@@ -3,6 +3,7 @@
   import { YTNodes } from 'youtubei.js/web'
   import { yt, type InnerTubeHomeFeed } from '$lib/youtube'
   import { Lockup } from '$lib/ui'
+  import { getRealNames } from '$lib/helpers'
 
   interface HomeFeedFilter {
     text: string
@@ -52,7 +53,7 @@
     }
   }
 
-  const loadItems = () => {
+  const loadItems = async () => {
     console.log(feed?.contents)
 
     if (
@@ -64,6 +65,15 @@
       tmpItems.forEach((item, index) => {
         item.animIndex = index
       })
+
+      const realNames = await getRealNames(tmpItems.filter((i) => i.type === 'video'))
+      for (const item of realNames) {
+        const it = tmpItems.find((i) => i.id === item.id)
+        if (it) {
+          it.title = item.title
+        }
+      }
+
       items = [...items, ...tmpItems]
     }
 
@@ -86,7 +96,7 @@
       feed = await yt.getHomeFeed()
     }
 
-    loadItems()
+    await loadItems()
   }
 
   onMount(() => {
