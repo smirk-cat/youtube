@@ -6,7 +6,7 @@
     icon?: string
   }
 
-  type Props = CustomProps & (HTMLButtonAttributes | HTMLAnchorAttributes)
+  type Props = CustomProps & HTMLButtonAttributes & { href?: string }
 
   let { children, icon, class: className, ...rest }: Props = $props()
 
