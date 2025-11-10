@@ -1,8 +1,8 @@
-import { clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-import shaka from 'shaka-player/dist/shaka-player.ui'
-import type { Misc } from 'youtubei.js/web'
 import type { ClassValue } from 'clsx'
+import { clsx } from 'clsx'
+import shaka from 'shaka-player/dist/shaka-player.ui'
+import { twMerge } from 'tailwind-merge'
+import type { Misc } from 'youtubei.js/web'
 
 export interface ProxySettings {
   protocol: 'http' | 'https'

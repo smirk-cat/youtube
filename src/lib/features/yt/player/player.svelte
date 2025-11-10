@@ -45,6 +45,7 @@
         (url.host.endsWith('.googlevideo.com') || url.href.includes('drm')) &&
         !getInjectedProxyFunction()
       ) {
+        // eslint-disable-next-line svelte/prefer-svelte-reactivity
         const newUrl = new URL(url.toString())
 
         const { PROXY_HOST, PROXY_PORT, PROXY_PROTOCOL } = getProxyConfig()
@@ -84,8 +85,10 @@
 
     const volumeContainer = videoContainer.getElementsByClassName('shaka-volume-bar-container')
     volumeContainer[0].addEventListener('mousewheel', (event) => {
+      if (!(event instanceof WheelEvent)) return
+
       event.preventDefault()
-      const delta = Math.sign((event as any).deltaY)
+      const delta = Math.sign(event.deltaY)
       videoElement!.volume = Math.max(0, Math.min(1, videoElement!.volume - delta * 0.05))
     })
 
@@ -113,7 +116,7 @@
       }
 
       nudge(startTime)
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error('[Player]', 'Error:', e)
     }
   }
@@ -141,14 +144,22 @@
     nudge(startTime)
   })
 
-  function clamp(v: number, min: number, max: number) {
+  const clamp = (v: number, min: number, max: number) => {
     return Math.min(max, Math.max(min, v))
   }
 
-  function nudge(seconds: number) {
+  const nudge = (seconds: number) => {
     const { start, end } = player.seekRange()
     const target = clamp(seconds, start, end)
     videoElement!.currentTime = target
+  }
+
+  const togglePlay = () => {
+    if (videoElement!.paused) {
+      videoElement!.play()
+    } else {
+      videoElement!.pause()
+    }
   }
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -158,7 +169,7 @@
     switch (e.code) {
       case 'Space':
         e.preventDefault()
-        videoElement!.paused ? videoElement!.play() : videoElement!.pause()
+        togglePlay()
         break
       case 'KeyM':
         e.preventDefault()
@@ -196,6 +207,5 @@
 <svelte:window onkeydown={onKeyDown} />
 
 <div bind:this={videoContainer} class="h-full">
-  <!-- svelte-ignore a11y_media_has_caption -->
   <video muted bind:this={videoElement} class="mx-auto" autoplay></video>
 </div>

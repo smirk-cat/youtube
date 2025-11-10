@@ -12,7 +12,7 @@ export const load: PageLoad = async ({ params, fetch, url }) => {
   const dislikes = rydData?.dislikes ?? 'Hidden'
 
   const startTimeStr = url.searchParams.get('t') ?? '0'
-  const startTime = parseInt(startTimeStr) || 0
+  const startTime = Number.parseInt(startTimeStr) || 0
 
   const isLive = video.basic_info.is_live || false
 

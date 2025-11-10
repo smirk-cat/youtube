@@ -108,7 +108,7 @@
 </script>
 
 <div class="scroll-hidden -mx-8 mb-4 flex gap-2 overflow-x-auto px-8">
-  {#each filters as filter}
+  {#each filters as filter (filter.text)}
     <!-- TODO: filters are broken in yti -->
     <button
       class="rounded-xl px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors duration-200 {filter.selected
@@ -121,7 +121,7 @@
 </div>
 
 <div class="grid grid-cols-4 gap-4">
-  {#each items as item}
+  {#each items as item (item.id)}
     {@const { animIndex, ...props } = item}
     <div
       style="--delay: {animIndex * 10}ms"

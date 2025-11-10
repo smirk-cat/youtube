@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cn } from '$lib/helpers'
-  import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements'
+  import type { HTMLButtonAttributes } from 'svelte/elements'
 
   interface CustomProps {
     icon?: string

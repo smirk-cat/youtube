@@ -4,11 +4,7 @@
   import { Button, ButtonGroup, Dropdown, DropdownButton, Lockup } from '$lib/ui'
 
   let { data } = $props()
-  let startTime = $state(data.startTime)
-
-  $effect(() => {
-    startTime = data.startTime
-  })
+  let startTime = $derived(data.startTime)
 
   let isLiked = $state(data.isLiked)
   let isDisliked = $state(data.isDisliked)
@@ -121,6 +117,7 @@
           onclick={onDescriptionClick}
           class="text-left [&>.yt-ch-link]:inline-flex [&>.yt-ch-link]:items-center [&>.yt-ch-link]:rounded-md [&>.yt-ch-link]:bg-neutral-700 [&>.yt-ch-link]:pl-1.5 [&>.yt-ch-link]:text-neutral-100 [&>.yt-ch-link>span]:-ml-1.5 [&>a]:text-blue-400"
         >
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.descriptionHtml}
         </button>
       </div>

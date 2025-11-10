@@ -1,5 +1,6 @@
 <script lang="ts">
   import { cn } from '$lib/helpers'
+  import { resolve } from '$app/paths'
 
   let {
     id,
@@ -22,7 +23,7 @@
 </script>
 
 <a
-  href="/watch/{id}"
+  href={resolve(`/watch/${id}`)}
   class={cn(
     'flex cursor-pointer gap-3',
     orientation == 'vertical' && 'flex-col',
