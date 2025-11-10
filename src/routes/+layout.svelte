@@ -14,14 +14,14 @@
   <div class="fixed top-0 left-0 z-10 flex h-14 w-full items-center bg-neutral-900 px-8">
     <div class="flex w-1/3 items-center justify-start">
       <a href="/" class="flex items-center text-xl tracking-tight">
-        <i class="i-tabler-brand-youtube-filled mr-1 h-7 w-7 text-red-400"></i>
+        <i class="mr-1 i-tabler-brand-youtube-filled h-7 w-7 text-red-400"></i>
         Premium
         <span class="ml-0.5 self-start text-xs text-neutral-400">US</span>
       </a>
     </div>
 
     <div class="flex w-1/3 items-center justify-center rounded-full bg-neutral-800">
-      <i class="i-tabler-search mr-1.5 ml-2.5 h-5 w-5 text-neutral-400"></i>
+      <i class="mr-1.5 ml-2.5 i-tabler-search h-5 w-5 text-neutral-400"></i>
       <input
         type="text"
         placeholder="Search"
