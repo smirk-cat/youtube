@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "smirk-cat",
+    "projectKey": "smirk-cat_youtube"
+  }
+}
