@@ -1,5 +1,5 @@
 {
-    "sonarCloudOrganization": "smirk-cat",
-    "projectKey": "smirk-cat_youtube",
-    "region": "EU"
+  "sonarCloudOrganization": "smirk-cat",
+  "projectKey": "smirk-cat_youtube",
+  "region": "EU"
 }

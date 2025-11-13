@@ -4,6 +4,7 @@
 
   let { children, data } = $props()
   import { resolve } from '$app/paths'
+  import { SearchBox } from '$lib/features/yt/search'
 </script>
 
 <svelte:head>
@@ -21,13 +22,8 @@
       </a>
     </div>
 
-    <div class="flex w-1/3 items-center justify-center rounded-full bg-neutral-800">
-      <i class="mr-1.5 ml-2.5 i-tabler-search h-5 w-5 text-neutral-400"></i>
-      <input
-        type="text"
-        placeholder="Search"
-        class="w-full border-none bg-transparent py-2 pr-4 pl-2 placeholder:text-neutral-500 focus:ring-0"
-      />
+    <div class="w-1/3">
+      <SearchBox />
     </div>
 
     <div class="flex w-1/3 items-center justify-end">
